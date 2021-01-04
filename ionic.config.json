@@ -1,0 +1,8 @@
+{
+  "name": "Formini",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "8cc8c646"
+}
