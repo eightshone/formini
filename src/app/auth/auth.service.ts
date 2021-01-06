@@ -19,9 +19,11 @@ export class AuthService {
   login(user: User): Observable<AuthResponse> {
     return this.httpClient.post(`${this.AUTH_SERVER_ADDRESS}/users/login`, user).pipe(
       tap(async (res: AuthResponse) => {
-
-        if (res.user) {
-          await this.storage.set("ACCESS_TOKEN", res.user.token);
+        
+        if (res.data && res.data.user) {
+          
+          await this.storage.set("ACCESS_TOKEN", res.data.user.token);
+          await this.storage.set("ROLE", res.data.user.role);
           this.authSubject.next(true);
         }
       })
@@ -30,11 +32,16 @@ export class AuthService {
 
   async logout() {
     await this.storage.remove("ACCESS_TOKEN");
+    await this.storage.remove("ROLE");
     this.authSubject.next(false);
   }
 
   isLoggedIn() {
     return this.authSubject.asObservable();
+  }
+
+  async getRole() {
+    return await this.storage.get("ROLE");
   }
 
 }

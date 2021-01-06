@@ -17,15 +17,17 @@
   <div id="container" class="d-flex align-items-center h-100">
     <div class="login-container w-100">
       <h3 class="text-center mb-3">Se connecter</h3>
-      <ion-item>
-        <ion-label position="stacked">Email</ion-label>
-        <ion-input></ion-input>
-      </ion-item>
-      <ion-item class="mb-3">
-        <ion-label position="stacked">Password</ion-label>
-        <ion-input></ion-input>
-      </ion-item>
-      <ion-button expand="block" size="large">Se connecter</ion-button>
+      <form #form="ngForm" (ngSubmit)="login(form)">
+        <ion-item>
+          <ion-label position="stacked">Email</ion-label>
+          <ion-input name="email" type="email" placeholder="your@email.com" ngModel required></ion-input>
+        </ion-item>
+        <ion-item class="mb-3">
+          <ion-label position="stacked">Password</ion-label>
+          <ion-input name="password" type="password" placeholder="Password" ngModel required></ion-input>
+        </ion-item>
+        <ion-button expand="block" size="large" type="submit" [disabled]="form.invalid" expand="block">Se connecter</ion-button>
+      </form>
     </div>
   </div>
 </ion-content>
