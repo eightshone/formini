@@ -9,6 +9,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from  './auth/auth.module';
+import { HomeModule } from  './api/home/home.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,7 +18,8 @@ import { AuthModule } from  './auth/auth.module';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    AuthModule
+    AuthModule,
+    HomeModule
   ],
   providers: [
     StatusBar,

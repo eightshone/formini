@@ -15,6 +15,29 @@
   </ion-header>
 
   <div id="container">
-    Home
+    <div class="text-center mt-5">
+      <h3>Formini</h3>
+    </div>
+    <div class="text-center mt-3 mb-2">
+      <h6>A propos de notre centre de formation</h6>
+    </div>
+    <div class="px-3 text-justify">{{ description }}</div>
+    <div class="text-center mt-5 mb-3">
+      <h3>Formations dispensées</h3>
+    </div>
+    <ion-router-link *ngFor="let c of courses" [href]="'/courses/' + c.slug">
+      <ion-card>
+        <img [src]="c.cover_url" />
+        <ion-card-header>
+          <ion-card-subtitle>{{ c.category }}</ion-card-subtitle>
+          <ion-card-title>{{ c.name }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          {{ c.description }}
+        </ion-card-content>
+      </ion-card>
+    </ion-router-link>
   </div>
+
+  <div class="my-3 text-center">Formini © 2021</div>
 </ion-content>
