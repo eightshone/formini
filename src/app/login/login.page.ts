@@ -24,8 +24,7 @@ export class LoginPage implements OnInit {
 
   login(form){
     this.authService.login(form.value).subscribe((res)=>{
-      this.authService.isLoggedIn().subscribe(res => console.log(res));
-      // this.router.navigateByUrl('home');
+      this.router.navigateByUrl('home');
     });
   }
 
