@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { CoursesService } from '../api/courses/courses.service';
+
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.page.html',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CoursesPage implements OnInit {
 
-  constructor() { }
+  public courses: Array<any>;
+
+  constructor(private coursesService:  CoursesService) { }
 
   ngOnInit() {
+    this.coursesService.getData().subscribe((res) => {
+      if (res) {
+        this.courses = res.data.courses;
+        
+      }
+    })
   }
 
 }

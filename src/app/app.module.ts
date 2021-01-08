@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from  './auth/auth.module';
 import { HomeModule } from  './api/home/home.module';
+import { CoursesModule } from  './api/courses/courses.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,7 +20,8 @@ import { HomeModule } from  './api/home/home.module';
     IonicModule.forRoot(),
     AppRoutingModule,
     AuthModule,
-    HomeModule
+    HomeModule,
+    CoursesModule
   ],
   providers: [
     StatusBar,

@@ -15,6 +15,19 @@
   </ion-header>
 
   <div id="container">
-    Formations
+    <h3 class="text-center mt-3">Nos Formations</h3>
+    <ion-router-link *ngFor="let c of courses" [href]="'/courses/' + c.slug">
+      <ion-card>
+        <img [src]="c.cover_url" />
+        <ion-card-header>
+          <ion-card-subtitle>{{ c.category }}</ion-card-subtitle>
+          <ion-card-title>{{ c.name }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          {{ c.description }}
+        </ion-card-content>
+      </ion-card>
+    </ion-router-link>
   </div>
+  <div class="my-3 text-center">Formini © 2021</div>
 </ion-content>
