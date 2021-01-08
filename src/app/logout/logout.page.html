@@ -1,12 +1,17 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Logout Page</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Logout</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div class="d-flex align-items-center h-100 w-100">
-    <h2>Are you sure you want to logout?</h2>
-    <ion-button color="danger" expand="block" (click)="logout()">Logout</ion-button>
+    <div class="w-100">
+      <p class="text-center">Are you sure you want to logout?</p>
+      <ion-button color="danger" size="large" expand="block" (click)="logout()">Logout</ion-button>
+    </div>
   </div>
 </ion-content>
