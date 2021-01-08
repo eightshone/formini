@@ -13,7 +13,7 @@ import { AuthResponse } from  './auth-response';
 export class AuthService {
   AUTH_SERVER_ADDRESS:  string  =  'http://localhost:3000';
   authSubject  =  new  BehaviorSubject(false);
-  userSubject = new BehaviorSubject({});
+  userSubject = new BehaviorSubject(null);
 
   constructor(private  httpClient:  HttpClient, private  storage:  Storage, private  router:  Router) { }
 
@@ -28,6 +28,7 @@ export class AuthService {
           await this.storage.set("FIRST_NAME", res.data.user.name) ;
           await this.storage.set("LAST_NAME", res.data.user.last_name);
           await this.storage.set("PROFILE_PICTURE", res.data.user.profile_picture);
+          await this.storage.set("EMAIL", res.data.user.email);
           this.authSubject.next(true);
         }
       })
@@ -40,6 +41,7 @@ export class AuthService {
     await this.storage.remove("FIRST_NAME");
     await this.storage.remove("LAST_NAME");
     await this.storage.remove("PROFILE_PICTURE");
+    await this.storage.remove("EMAIL");
     this.authSubject.next(false);
     this.userSubject.next({});
     this.router.navigateByUrl('home');
@@ -58,7 +60,7 @@ export class AuthService {
 
   async getUser() {
     if (!await this.storage.get("ACCESS_TOKEN")) {
-      this.userSubject.next({});
+      this.userSubject.next(null);
     return this.userSubject.asObservable();
     }
     const user = {

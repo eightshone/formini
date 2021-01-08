@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from  './auth/auth.module';
 import { HomeModule } from  './api/home/home.module';
 import { CoursesModule } from  './api/courses/courses.module';
+import { SingleCourseModule } from  './api/single-course/courses.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,7 +22,8 @@ import { CoursesModule } from  './api/courses/courses.module';
     AppRoutingModule,
     AuthModule,
     HomeModule,
-    CoursesModule
+    CoursesModule,
+    SingleCourseModule
   ],
   providers: [
     StatusBar,

@@ -1,9 +1,28 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>single-course</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ course.name }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <img [src]="course.cover_url" />
+  <div class="mt-3 px-3">
+    <h3>{{ course.name }}</h3>
+    <p>{{ course.category }}</p>
+    <h5>Description</h5>
+    <p>{{ course.description }}</p>
+    <h5 *ngIf="course.instructors.length > 1">Formateurs</h5>
+    <h5 *ngIf="course.instructors.length < 2">Formateur</h5>
+    <div *ngFor="let i of course.instructors">> {{ i.name }} {{ i.last_name }}</div>
+    <h5 class="mt-3">Participants ({{ course.participants.length }})</h5>
+    <div *ngFor="let i of course.participants">> {{ i.name }} {{ i.last_name }}</div>
+    <ion-button *ngIf="!isJoined" expand="block" size="large" class="mt-5" (click)="joinCourse(course._id)">S'inscrire
+    </ion-button>
+    <ion-button *ngIf="isJoined" expand="block" size="large" class="mt-5" (click)="unjoinCourse(course._id)">Se
+      désinscrire</ion-button>
+  </div>
 
 </ion-content>
