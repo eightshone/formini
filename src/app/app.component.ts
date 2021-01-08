@@ -3,6 +3,7 @@ import { AuthService } from './auth/auth.service';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { Storage } from  '@ionic/storage';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 })
 export class AppComponent implements OnInit {
   public selectedIndex = 0;
+  public connectedUser = null;
   public menus = []
   public appPages = [
     {
@@ -61,7 +63,8 @@ export class AppComponent implements OnInit {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private  authService:  AuthService
+    private  authService:  AuthService,
+    private  storage:  Storage
   ) {
     this.initializeApp();
   }
@@ -80,8 +83,13 @@ export class AppComponent implements OnInit {
       this.authService.isLoggedIn().subscribe(res => {
         if (res) {
           this.menus = this.connectedAppPages;
+          this.connectedUser = {};
+          this.storage.get("LAST_NAME").then(ln => this.connectedUser['lastName'] = ln);
+          this.storage.get("FIRST_NAME").then(fn => this.connectedUser['firstName'] = fn);
+          this.storage.get("PROFILE_PICTURE").then(pp => this.connectedUser['profilePicture'] = pp);
         } else {
           this.menus = this.appPages;
+          this.connectedUser = null;
         }
         this.selectedIndex = this.menus.findIndex(page => page.url.toLowerCase() === path.toLowerCase());
       });
