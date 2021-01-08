@@ -38,6 +38,9 @@ export class AuthService {
   }
 
   isLoggedIn() {
+    if(this.storage.get("ACCESS_TOKEN")) {
+      this.authSubject.next(true);
+    }
     return this.authSubject.asObservable();
   }
 
