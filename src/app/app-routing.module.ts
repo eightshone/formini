@@ -30,6 +30,10 @@ const routes: Routes = [
   {
     path: 'training',
     loadChildren: () => import('./training/training.module').then( m => m.TrainingPageModule)
+  },
+  {
+    path: 'logout',
+    loadChildren: () => import('./logout/logout.module').then( m => m.LogoutPageModule)
   }
 ];
 

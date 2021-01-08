@@ -66,10 +66,6 @@ export class AppComponent implements OnInit {
     this.initializeApp();
   }
 
-  async concatMenu(value) {
-
-  }
-
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();

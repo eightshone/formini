@@ -2,7 +2,7 @@ import { Injectable } from  '@angular/core';
 import { HttpClient } from  '@angular/common/http';
 import { tap } from  'rxjs/operators';
 import { Observable, BehaviorSubject } from  'rxjs';
-
+import { Router } from  "@angular/router";
 import { Storage } from  '@ionic/storage';
 import { User } from  './user';
 import { AuthResponse } from  './auth-response';
@@ -14,7 +14,7 @@ export class AuthService {
   AUTH_SERVER_ADDRESS:  string  =  'http://localhost:3000';
   authSubject  =  new  BehaviorSubject(false);
 
-  constructor(private  httpClient:  HttpClient, private  storage:  Storage) { }
+  constructor(private  httpClient:  HttpClient, private  storage:  Storage, private  router:  Router) { }
 
   login(user: User): Observable<AuthResponse> {
     return this.httpClient.post(`${this.AUTH_SERVER_ADDRESS}/users/login`, user).pipe(
@@ -34,6 +34,7 @@ export class AuthService {
     await this.storage.remove("ACCESS_TOKEN");
     await this.storage.remove("ROLE");
     this.authSubject.next(false);
+    this.router.navigateByUrl('home');
   }
 
   isLoggedIn() {
