@@ -8,14 +8,20 @@
             <ion-note>Site de formation</ion-note>
           </div>
           <ng-template #loggedIn>
-            <ion-list-header>
-              <ion-img [src]="this.connectedUser.profilePicture"></ion-img>
-            </ion-list-header>
-            <ion-note>{{this.connectedUser.firstName}} {{this.connectedUser.lastName}}</ion-note>
+            <div class="d-flex">
+              <div class="profile-pic mt-1"
+                [ngStyle]="{'background-image': 'url(' + connectedUser.profilePicture + ')'}">
+              </div>
+              <div>
+                <ion-list-header>{{connectedUser.firstName}}</ion-list-header>
+                <ion-note>{{connectedUser.lastName}}</ion-note>
+              </div>
+            </div>
           </ng-template>
 
           <ion-menu-toggle auto-hide="false" *ngFor="let m of menus; let i = index">
-            <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[m.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">
+            <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[m.url]" lines="none"
+              detail="false" [class.selected]="selectedIndex == i">
               <ion-icon slot="start" [ios]="m.icon + '-outline'" [md]="m.icon + '-sharp'"></ion-icon>
               <ion-label>{{ m.title }}</ion-label>
             </ion-item>

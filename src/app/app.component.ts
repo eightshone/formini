@@ -87,6 +87,8 @@ export class AppComponent implements OnInit {
           this.storage.get("LAST_NAME").then(ln => this.connectedUser['lastName'] = ln);
           this.storage.get("FIRST_NAME").then(fn => this.connectedUser['firstName'] = fn);
           this.storage.get("PROFILE_PICTURE").then(pp => this.connectedUser['profilePicture'] = pp);
+          console.log(this.connectedUser);
+          
         } else {
           this.menus = this.appPages;
           this.connectedUser = null;
