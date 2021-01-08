@@ -45,8 +45,8 @@ export class AuthService {
     this.router.navigateByUrl('home');
   }
 
-  async isLoggedIn() {
-    if(await this.storage.get("ACCESS_TOKEN")) {
+  isLoggedIn() {
+    if(this.storage.get("ACCESS_TOKEN")) {
       this.authSubject.next(true);
     }
     return this.authSubject.asObservable();
